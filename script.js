@@ -11,15 +11,26 @@ let textP2;
 let soundClassifier;
 
 function setup() {
+canvasDiv = createDiv();
+canvas = createCanvas(640, 480);
+textDiv = createDiv();
+textP = createP("Model loading, please wait...");
+textP.parent(textDiv);
+textP2 = createP();
+textP2.parent(textDiv);
 
+let options = {
+  probilitlyThreshold: 0.95
+};
+soundClassifier = ml5.soundClassifier("SpeechCommands18w", options, modelReady);
 }
 
 function draw() {
-
+  let label = textP.html();
 }
 
 function modelReady() {
-
+  textP.html("Model loaded. Say any of the commands below")
 }
 
 function gotResults(error, results) {
